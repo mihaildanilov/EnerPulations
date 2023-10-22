@@ -26,6 +26,7 @@ const DataComponent: React.FC = () => {
         getPriceData();
         
     }, []);
+    console.log("DataComponent Log data",data);
 
     const { optimizedData: commands, error: optimizeError, loading: optimizeLoading } = useOptimizedData(data!);
     return (

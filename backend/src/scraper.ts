@@ -2,6 +2,7 @@ import express from 'express';
 import axios from 'axios';
 import cheerio from 'cheerio';
 import { optimizeActionPlan } from './optimizer';
+import bodyParser from 'body-parser';
 const app = express();
 const PORT = 3008;
 
@@ -22,8 +23,15 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
+    express.json()
 });
 
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  }),
+);
 app.get('/fetch-prices', async (req, res) => {
     try {
         const url = 'https://www.e-cena.lv/';
@@ -47,9 +55,8 @@ app.get('/fetch-prices', async (req, res) => {
     }
 });
 
-app.post('/optimize', (req, res) => {
-    const data: DataObject[] = req.body.data;
-    console.log("Data sent to optimizer",data)
+app.post('/optimize', async (req, res) => {
+    const data: DataObject[] = req.body
     if (!Array.isArray(data) || data.length === 0) {
         res.status(400).send('Invalid data');
         return;

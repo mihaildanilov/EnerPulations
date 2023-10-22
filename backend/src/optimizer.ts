@@ -23,7 +23,8 @@ const maxBattery = 0.95;
 export function optimizeActionPlan(data: DataObject[]): ActionEntry[] {
   const sortedData = [...data].sort((a, b) => a.price - b.price);  // No parseFloat needed
 
-
+  console.log("data received at optimizer", data);
+  
   const potentialBuyHours = new Set<string>();
   const potentialSellHours = new Set<string>();
 
