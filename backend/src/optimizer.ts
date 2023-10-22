@@ -1,8 +1,8 @@
-export type DataEntry = {
+interface DataObject {
   hour: string;
-  price: string;
+  price: number;
   day: string;
-};
+}
 
 export type ActionEntry = {
   hour: string;
@@ -20,26 +20,26 @@ const minProfitThreshold = 0.02;
 const minBattery = 0.15;
 const maxBattery = 0.95;
 
+export function optimizeActionPlan(data: DataObject[]): ActionEntry[] {
+  const sortedData = [...data].sort((a, b) => a.price - b.price);  // No parseFloat needed
 
-export function optimizeActionPlan(data: DataEntry[]): ActionEntry[] {
-  const sortedData = [...data].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
 
   const potentialBuyHours = new Set<string>();
   const potentialSellHours = new Set<string>();
 
   for (const entry of sortedData) {
-      const hour = entry.hour;
-      const day = entry.day;
-      const price = parseFloat(entry.price);
+    const hour = entry.hour;
+    const day = entry.day;
+    const price = entry.price;  // No parseFloat needed
 
-      if (price <= parseFloat(sortedData[Math.floor(sortedData.length / 4)].price)) {
-          potentialBuyHours.add(`${hour}-${day}`);
-      }
+    if (price <= sortedData[Math.floor(sortedData.length / 4)].price) {
+        potentialBuyHours.add(`${hour}-${day}`);
+    }
 
-      if (price >= parseFloat(sortedData[Math.floor(3 * sortedData.length / 4)].price)) {
-          potentialSellHours.add(`${hour}-${day}`);
-      }
-  }
+    if (price >= sortedData[Math.floor(3 * sortedData.length / 4)].price) {
+        potentialSellHours.add(`${hour}-${day}`);
+    }
+}
 
   let batteryKwh = startingBatteryKwh;
   const actionPlan: ActionEntry[] = [];
@@ -50,7 +50,7 @@ export function optimizeActionPlan(data: DataEntry[]): ActionEntry[] {
   for (const entry of data) {
       const hour = entry.hour;
       const day = entry.day;
-      const price = parseFloat(entry.price);
+      const price = entry.price
       let action = 'HOLD';
       let sellingPrice: number | null = null;
       const batteryPercentage = (batteryKwh / batteryCapacity) * 100;

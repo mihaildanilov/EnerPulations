@@ -1,8 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import cheerio from 'cheerio';
-import { optimizeActionPlan, DataEntry, ActionEntry } from './optimizer';  // Adjust path if necessary
-
+import { optimizeActionPlan } from './optimizer';
 const app = express();
 const PORT = 3008;
 
@@ -10,6 +9,13 @@ interface DataObject {
     hour: string;
     price: number;
     day: string;
+}
+
+interface ActionEntry {
+    hour: string;
+    day: string;
+    electricity_price: number;
+    action: string;
 }
 
 app.use((req, res, next) => {
@@ -41,10 +47,9 @@ app.get('/fetch-prices', async (req, res) => {
     }
 });
 
-
 app.post('/optimize', (req, res) => {
-    const data: DataEntry[] = req.body.data;
-    console.log("Data sent to optimizer", data);
+    const data: DataObject[] = req.body.data;
+    console.log("Data sent to optimizer",data)
     if (!Array.isArray(data) || data.length === 0) {
         res.status(400).send('Invalid data');
         return;
@@ -53,6 +58,7 @@ app.post('/optimize', (req, res) => {
     res.json(optimizedPlan);
 });
 
-app.listen(() => {
-    console.log(`Server is running on http://localhost:3008`);
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });
