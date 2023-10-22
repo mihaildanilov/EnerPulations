@@ -1,3 +1,5 @@
+"use client"
+import DataComponent from "@/components/DataComponent";
 import { Dancing_Script, Roboto } from "next/font/google";
 
 const heading = Roboto({
@@ -27,6 +29,7 @@ export default function Home() {
         dapibus leo leo, id maximus ante scelerisque nec. Cras posuere tortor
         mauris, eu porta urna blandit a.
       </p>
+      <DataComponent />
     </main>
   );
 }
