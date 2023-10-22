@@ -2,7 +2,7 @@ import SettingsForm from "@/components/pages/settings-form";
 import HeadingText from "@/components/heading-text";
 
 export const metadata = {
-  title: "Contact",
+  title: "Settings",
 };
 
 export default function Contact() {

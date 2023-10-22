@@ -13,7 +13,7 @@ export const featureCards: ContentSection = {
     {
       text: `Next.js`,
       subtext: `The React Framework`,
-      image: `/nextJS.png`,
+      image: `/icons8-nextjs-144.png`,
     },
     {
       text: `NestJs`,

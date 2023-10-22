@@ -35,10 +35,7 @@ const generateFormSchema = (inputs: formInputProps[]) => {
   return z.object(schema);
 };
 
-// ... (imports and other stuff)
-
 export default function SettingsForm() {
-  // Combine all formInputProps arrays into one
   const allFormInputs = [
     ...group1FormInputs,
     ...group2FormInputs,
@@ -47,7 +44,6 @@ export default function SettingsForm() {
     ...group5FormInputs,
   ];
 
-  // Generate a dynamic Zod schema
   const formSchema = generateFormSchema(allFormInputs);
 
   const form = useForm<z.infer<typeof formSchema>>({
