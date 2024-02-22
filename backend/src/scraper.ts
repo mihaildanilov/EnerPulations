@@ -48,22 +48,14 @@ app.get('/fetch-prices', async (req, res) => {
                 data.push({ hour, price, day });
             });
         });
-        res.json(data);
+        const optimizedPlan: ActionEntry[] = optimizeActionPlan(data);
+        res.json(optimizedPlan);
     } catch (error) {
         console.error(error);
         res.status(500).send('Server Error');
     }
 });
 
-app.post('/optimize', async (req, res) => {
-    const data: DataObject[] = req.body
-    if (!Array.isArray(data) || data.length === 0) {
-        res.status(400).send('Invalid data');
-        return;
-    }
-    const optimizedPlan: ActionEntry[] = optimizeActionPlan(data);
-    res.json(optimizedPlan);
-});
 
 
 app.listen(PORT, () => {

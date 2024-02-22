@@ -1,4 +1,5 @@
-"use client"
+
+
 import { chartTestData } from "@/lib/chartTestData";
 import LineChart from "./_components/LineChart";
 import HeadingText from "@/components/heading-text";

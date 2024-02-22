@@ -76,12 +76,12 @@ export function optimizeActionPlan(data: DataObject[]): ActionEntry[] {
               totalProfit += profit;
           }
       }
-
+    console.log(hour)
       actionPlan.push({
           hour,
           day,
           electricity_price: price,
-          action,
+          action
       });
   }
   return actionPlan
