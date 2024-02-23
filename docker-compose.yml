@@ -6,6 +6,8 @@ services:
       - "30162:3000"
     depends_on:
       - backend
+    env_file:
+      - stack.env
 
   backend:
     build: ./backend
