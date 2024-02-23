@@ -1,25 +1,25 @@
-import "./globals.css";
-import { siteConfig } from "@/config/site";
-import { Inter } from "next/font/google";
-import Navbar from "@/components/layout/navbar";
+import './globals.css';
+import { Inter } from 'next/font/google';
+import Navbar from '@/components/layout/navbar';
 
-import { ThemeProvider } from "@/components/theme-provider";
-import { settings } from "@/config/settings";
+import { ThemeProvider } from '@/components/theme-provider';
+import { settings } from '@/config/settings';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
+  metadataBase: new URL('https://powerpulse.mihaildanilov.com/'),
   title: {
-    default: "PowerPulse",
+    default: 'PowerPulse',
+    template: `%s | 'PowerPulse',`,
   },
-  description: "Description",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
+  description:
+    'Utilizing real-time data and predictive analytics, we buy low and sell high on your behalf, 24/7',
+  keywords: ['Next.js', 'NestJs', 'Tailwind CSS', 'Vercel', 'Prisma', 'PostgreSQL'],
 
+  creator: 'Mihails Danilovs',
   icons: {
-    icon: "/favicon.ico",
+    icon: './favicon.ico',
   },
 };
 
@@ -30,9 +30,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${inter.className} flex min-h-screen flex-col bg-background text-primary`}
-      >
+      <body className={`${inter.className} flex min-h-screen flex-col bg-background text-primary`}>
         {settings.themeToggleEnabled ? (
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />

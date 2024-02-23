@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
-import { ModeToggle } from "@/components/mode-toggle";
-import { navLinks } from "@/lib/links";
-import { settings } from "@/config/settings";
-import { Button } from "../ui/button";
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { ModeToggle } from '@/components/mode-toggle';
+import { navLinks } from '@/lib/links';
+import { settings } from '@/config/settings';
+import { Button } from '../ui/button';
 
 export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
@@ -16,9 +16,9 @@ export default function Navbar() {
 
   useEffect(() => {
     if (navbar) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
   }, [navbar]);
 
@@ -27,23 +27,19 @@ export default function Navbar() {
       <nav className="mx-auto justify-between px-4 md:flex md:items-center md:px-8 lg:max-w-7xl ">
         <div className="flex items-center justify-between py-3 md:block md:py-5">
           <Link href="/" onClick={handleClick}>
-            <h1 className="text-2xl font-bold duration-200 lg:hover:scale-[1.10]">
-              PowerPulse
-            </h1>
+            <h1 className="text-2xl font-bold duration-200 lg:hover:scale-[1.10]">PowerPulse</h1>
           </Link>
           <div className="flex gap-1 md:hidden">
             <button
               className="rounded-md p-2 text-primary outline-none focus:border focus:border-primary"
               aria-label="Hamburger Menu"
-              onClick={() => setNavbar(!navbar)}
-            >
+              onClick={() => setNavbar(!navbar)}>
               {navbar ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 "
                   viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
+                  fill="currentColor">
                   <path
                     fillRule="evenodd"
                     d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -57,13 +53,8 @@ export default function Navbar() {
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
+                  strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
@@ -72,10 +63,9 @@ export default function Navbar() {
         </div>
         <div
           className={`absolute left-0 top-0 z-10 justify-center rounded-md border bg-background md:static md:block md:border-none  ${
-            navbar ? "block" : "hidden"
+            navbar ? 'block' : 'hidden'
           }`}
-          style={{ width: "100%", maxWidth: "20rem" }}
-        >
+          style={{ width: '100%', maxWidth: '20rem' }}>
           <ul className="flex flex-col items-center space-y-4 text-primary opacity-60 md:flex-row md:space-x-6 md:space-y-0">
             {navLinks.map((link, index) => (
               <Button key={index} variant="ghost" className="w-full ">

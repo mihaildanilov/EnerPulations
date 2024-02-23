@@ -1,4 +1,4 @@
-import { HeroHeader, ContentSection } from "@/types/contents";
+import { HeroHeader, ContentSection } from '@/types/contents';
 
 export const heroHeader: HeroHeader = {
   header: `Smart Energy, Smarter Savings.`,

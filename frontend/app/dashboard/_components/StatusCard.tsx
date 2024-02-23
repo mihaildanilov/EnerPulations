@@ -1,15 +1,28 @@
-"use client";
+'use client';
 
-import { Slider } from "@/components/ui/slider";
+const StatusCard = ({ data }: { data: ChartDataProps[] }) => {
+  const findCurrentAction = (data: ChartDataProps[]) => {
+    const now = new Date();
+    const currentDay = now.toLocaleDateString('en-CA');
+    const currentHour = now.getHours();
 
-const StatusCard = ({ data }: { data: chartDataProps[] }) => {
-  const currentStatus = data[0];
+    // Find the entry for the current day and hour
+    const currentEntry = data.find((entry) => {
+      const entryDay = entry.day.split('-').reverse().join('-');
+      const entryHour = parseInt(entry.hour.split(':')[0], 10);
+      return entryDay === currentDay && entryHour === currentHour;
+    });
+
+    return currentEntry || { action: 'Unknown' };
+  };
+
+  const currentStatus = findCurrentAction(data);
   const colorClass =
-    currentStatus.action === "BUY" || currentStatus.action === "SELL"
-      ? "bg-green-600" // Green for buy/sell
-      : currentStatus.action === "HOLD"
-      ? "bg-orange-600" // Orange for hold
-      : "";
+    currentStatus.action === 'BUY' || currentStatus.action === 'SELL'
+      ? 'bg-green-600'
+      : currentStatus.action === 'HOLD'
+        ? 'bg-orange-600'
+        : 'bg-gray-600';
 
   return (
     <div>

@@ -1,6 +1,5 @@
-"use client";
+'use client';
 
-import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -10,26 +9,18 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const LineChart = ({ data }: { data: chartDataProps[] }) => {
+const LineChart = ({ data }: { data: ChartDataProps[] }) => {
   const options = {
     scales: {
       x: {
         title: {
           display: true,
-          text: "Time",
+          text: 'Time',
           font: {
             size: 20,
           },
@@ -38,7 +29,7 @@ const LineChart = ({ data }: { data: chartDataProps[] }) => {
       y: {
         title: {
           display: true,
-          text: "Euro",
+          text: 'Euro',
           font: {
             size: 20,
           },
@@ -48,7 +39,7 @@ const LineChart = ({ data }: { data: chartDataProps[] }) => {
     responsive: true,
     plugins: {
       legend: {
-        position: "top" as const,
+        position: 'top' as const,
         labels: {
           boxWidth: 0,
         },
@@ -65,10 +56,10 @@ const LineChart = ({ data }: { data: chartDataProps[] }) => {
     labels,
     datasets: [
       {
-        label: " ",
+        label: ' ',
         data: prices,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
       },
     ],
   };
