@@ -8,8 +8,14 @@ services:
       - backend
     env_file:
       - stack.env
+    networks:
+      - default
 
   backend:
     build: ./backend
-    ports:
-      - "28130:3008"
+    networks:
+      - reverse-proxy-nw
+
+networks:
+  reverse-proxy-nw:
+    external: true

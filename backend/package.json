@@ -33,5 +33,5 @@
   "engines": {
     "node": "14.x.x"
   },
-  "proxy": "http://localhost:3008"
+  "proxy": "http://0.0.0.0:3008"
 }
