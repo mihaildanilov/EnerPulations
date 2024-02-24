@@ -30,4 +30,6 @@ services:
 networks:
   backend-network:
     driver: bridge
+  nginxproxymanager_nginx-proxy-manager-nw: 
+    external: true
 
