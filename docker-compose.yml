@@ -26,6 +26,7 @@ services:
       - "14625:3008"
     networks:
       - backend-network
+      - nginxproxymanager_nginx-proxy-manager-nw
 
 networks:
   backend-network:
