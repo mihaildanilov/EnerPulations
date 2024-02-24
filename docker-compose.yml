@@ -4,15 +4,14 @@ services:
     build: 
       context: ./frontend
       args:
-        - api_url=${NEXT_PUBLIC_API_URL}
+        - next_public_api_url=${NEXT_PUBLIC_API_URL}
     ports:
       - "12079:3000"
-    depends_on:
-      - backend
     env_file:
       - stack.env
+    depends_on:
+      - backend
     networks:
-      - backend-network
       - nginxproxymanager_nginx-proxy-manager-nw
 
   backend:
@@ -25,12 +24,9 @@ services:
     ports:
       - "14625:3008"
     networks:
-      - backend-network
       - nginxproxymanager_nginx-proxy-manager-nw
 
 networks:
-  backend-network:
-    driver: bridge
   nginxproxymanager_nginx-proxy-manager-nw: 
     external: true
 

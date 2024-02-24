@@ -19,13 +19,8 @@ interface ActionEntry {
   electricity_price: number;
   action: string;
 }
-console.log(`Frontend URL: ${process.env.FRONTEND_URL}`);
-console.log(`API URL: ${process.env.NEXT_PUBLIC_API_URL}`);
-app.use((req, res, next) => {
-  console.log(`Incoming request from origin: ${req.headers.origin}`);
-  console.log(`Request URL: ${req.originalUrl}`);
-  console.log(`Setting Access-Control-Allow-Origin to: ${process.env.FRONTEND_URL}`);
 
+app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.header(
@@ -33,7 +28,6 @@ app.use((req, res, next) => {
     'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   );
   if (req.method === 'OPTIONS') {
-    // Pre-flight request. Respond with 204 (No content)
     return res.status(204).end();
   }
   next();
