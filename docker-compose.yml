@@ -10,9 +10,12 @@ services:
       - stack.env
     networks:
       - default
+      - reverse-proxy-nw
 
   backend:
     build: ./backend
+    ports:
+      - "60149:3008"
     networks:
       - reverse-proxy-nw
 
