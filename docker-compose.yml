@@ -13,7 +13,7 @@ services:
       - stack.env
     networks:
       - backend-network
-      - nginx-proxy-manager-nw
+      - nginxproxymanager_nginx-proxy-manager-nw
 
   backend:
     build: 
