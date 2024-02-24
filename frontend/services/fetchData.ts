@@ -8,9 +8,8 @@ const useFetchData = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Ensure loading is true at the start of a fetch operation
+      setLoading(true);
       try {
-        // const response = await fetch(`http://localhost:3008/fetch-prices`, {
         const response = await fetch(`${API_URL}/fetch-prices`, {
           method: 'GET',
           headers: { 'Content-Type': 'application/json' },
@@ -26,7 +25,7 @@ const useFetchData = () => {
     };
 
     fetchData();
-  }, []); // Removed data from dependencies to prevent re-fetching
+  }, []);
 
   return { data, error, loading };
 };

@@ -1,24 +1,32 @@
 version: '3.8'
 services:
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      args:
+        - api_url=${NEXT_PUBLIC_API_URL}
     ports:
-      - "30162:3000"
+      - "12079:3000"
     depends_on:
       - backend
     env_file:
       - stack.env
     networks:
-      - default
-      - reverse-proxy-nw
+      - backend-network
 
   backend:
-    build: ./backend
+    build: 
+      context: ./backend
+      args:
+        - frontend_url=${FRONTEND_URL}
+    env_file:
+      - stack.env
     ports:
-      - "60149:3008"
+      - "14625:3008"
     networks:
-      - reverse-proxy-nw
+      - backend-network
 
 networks:
-  reverse-proxy-nw:
-    external: true
+  backend-network:
+    driver: bridge
+

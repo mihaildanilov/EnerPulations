@@ -21,7 +21,7 @@ const minBattery = 0.15;
 const maxBattery = 0.95;
 
 export function optimizeActionPlan(data: DataObject[]): ActionEntry[] {
-  const sortedData = [...data].sort((a, b) => a.price - b.price); // No parseFloat needed
+  const sortedData = [...data].sort((a, b) => a.price - b.price);
 
   const potentialBuyHours = new Set<string>();
   const potentialSellHours = new Set<string>();
@@ -29,7 +29,7 @@ export function optimizeActionPlan(data: DataObject[]): ActionEntry[] {
   for (const entry of sortedData) {
     const hour = entry.hour;
     const day = entry.day;
-    const price = entry.price; // No parseFloat needed
+    const price = entry.price;
 
     if (price <= sortedData[Math.floor(sortedData.length / 4)].price) {
       potentialBuyHours.add(`${hour}-${day}`);

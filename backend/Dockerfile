@@ -1,22 +1,17 @@
-# Use the official Node.js 14 image.
 FROM node:20
 
-# Create app directory
 WORKDIR /app
 
-# Install app dependencies by copying
-# package.json and package-lock.json
+ARG frontend_url
+
 COPY package*.json ./
+
+ENV FRONTEND_URL=${frontend_url}
 
 RUN npm install
 
-# If you are building your code for production
-# RUN npm ci --only=production
-
-# Bundle app source
 COPY . .
 
-# Build your TypeScript
 RUN npm run build
 
 

@@ -1,8 +1,8 @@
 'use client';
 
-import LineChart from './_components/LineChart'; // Visualize data elegantly
-import HeadingText from '@/components/heading-text'; // Announce with boldness
-import StatusCard from './_components/StatusCard'; // Status at a glance
+import LineChart from './_components/LineChart';
+import HeadingText from '@/components/heading-text';
+import StatusCard from './_components/StatusCard';
 import useFetchData from '@/services/fetchData';
 
 const Dashboard = () => {
@@ -22,4 +22,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard; // A gift to the world
+export default Dashboard;

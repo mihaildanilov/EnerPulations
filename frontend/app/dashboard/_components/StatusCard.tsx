@@ -6,7 +6,6 @@ const StatusCard = ({ data }: { data: ChartDataProps[] }) => {
     const currentDay = now.toLocaleDateString('en-CA');
     const currentHour = now.getHours();
 
-    // Find the entry for the current day and hour
     const currentEntry = data.find((entry) => {
       const entryDay = entry.day.split('-').reverse().join('-');
       const entryHour = parseInt(entry.hour.split(':')[0], 10);

@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from 'express';
 import axios from 'axios';
 import cheerio from 'cheerio';
@@ -20,12 +21,11 @@ interface ActionEntry {
 }
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', process.env.FRONTEND_URL);
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
   express.json();
 });
-
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -40,7 +40,7 @@ app.get('/fetch-prices', async (req, res) => {
     const tables = $('table');
     const data: DataObject[] = [];
     tables.each((i, table) => {
-      const rows = $(table).find('tr').slice(1); // Skipping header
+      const rows = $(table).find('tr').slice(1);
       const day = $('h4').eq(i).text().trim();
       rows.each((j, row) => {
         const hour = $(row).find('td').eq(1).text().trim();
