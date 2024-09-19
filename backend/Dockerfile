@@ -2,11 +2,11 @@ FROM node:20
 
 WORKDIR /app
 
-ARG frontend_url
+ARG FRONTEND_URL
 
 COPY package*.json ./
 
-ENV FRONTEND_URL=${frontend_url}
+ENV FRONTEND_URL ${FRONTEND_URL}
 
 RUN npm install
 

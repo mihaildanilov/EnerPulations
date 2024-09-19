@@ -4,7 +4,7 @@ services:
     build: 
       context: ./frontend
       args:
-        - next_public_api_url=${NEXT_PUBLIC_API_URL}
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
     ports:
       - "12079:3000"
     depends_on:
@@ -16,7 +16,7 @@ services:
     build: 
       context: ./backend
       args:
-        - frontend_url=${FRONTEND_URL}
+        - FRONTEND_URL=${FRONTEND_URL}
     ports:
       - "14625:3008"
     networks:
@@ -24,5 +24,5 @@ services:
 
 networks:
   nginxproxymanager_nginx-proxy-manager-nw: 
-    external: true
+    # external: true
 

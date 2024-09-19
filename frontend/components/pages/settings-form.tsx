@@ -47,16 +47,16 @@ export default function SettingsForm() {
     defaultValues: allFormInputs.reduce((acc, input) => ({ ...acc, [input.inputName]: '' }), {}),
   });
 
-  // function onSubmit(values: z.infer<typeof formSchema>) {
-  //   //TODO Post request to server
-  //   console.log(values);
-  //   form.reset();
-  // }
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    //TODO Post request to server
+    console.log(values);
+    form.reset();
+  }
 
   return (
     <Form {...form}>
-      {/* <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4 py-8 sm:w-[24rem]"> */}
-      <form className="w-full space-y-4 py-8 sm:w-[24rem]">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-4 py-8 sm:w-[24rem]">
+        {/*<form className="w-full space-y-4 py-8 sm:w-[24rem]">*/}
         {allFormInputs.map((item, index) => (
           <FormField
             key={index}
